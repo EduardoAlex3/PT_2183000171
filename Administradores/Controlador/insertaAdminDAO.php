@@ -1,6 +1,5 @@
 <?php
     include "../Modelo/conexion.php";
-    //include "../Clases/Administrador.php";
     include "../Modelo/AdminDAO.php";
     
 

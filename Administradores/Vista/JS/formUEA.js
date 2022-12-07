@@ -30,14 +30,15 @@ function validarForm(){
       });*/
 
     guardarUEA();
+    //location.reload();
 }
 var contTemas = 0;
 function agregarTema(){
-    var Temas = document.getElementById("temas");
+    var Temas = document.getElementById("arrTemas");
     var input = document.createElement('input');
     input.type = "text";
-    input.name = "tema" + contTemas++;
-    input.id = "tema";
+    input.name = "tema[]"
+    input.id = "tema" + contTemas++;;
     input.className = "form-control";
     Temas.appendChild(input);
     // <input type="text" name="nombreTemario" id="nombreTemario" class="form-control"></input>

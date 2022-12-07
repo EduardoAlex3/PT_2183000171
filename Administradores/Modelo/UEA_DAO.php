@@ -24,18 +24,21 @@ include "../Controlador/Clases/Temario.php";
             $row = $result->fetch_assoc();
             $idUEA = $row["idUEA"];
 
-            $temario = new Temario(1,$tem,$uea);
-
             $stm = $this->conexion->prepare("
                 INSERT INTO temario (Nombre,UEA_idUEA) values (?,?);");
             $stm->bind_param("si",$tem,$idUEA);
             $stm->execute();
+            
+            $sql = "SELECT MAX(idTemario) AS id FROM temario;";
+            $result = $this->conexion->query($sql);
+            $row = $result->fetch_assoc();
+            $idTem = $row['id'];
  
             for ($i = 0; $i < count($temas); ++$i) {
                 $stm = $this->conexion->prepare("
                 Insert into tema
                 (Nombre,Temario_idTemario) values (?,?);");
-                $stm->bind_param("ii",$temas[$i],$tem);
+                $stm->bind_param("si",$temas[$i],$idTem);
                 $stm->execute();
             }
 
